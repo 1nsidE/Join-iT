@@ -1,0 +1,16 @@
+@echo off
+
+SET PROJECTNAME=Join-iT
+SET MASMBIN=C:\MASM32\bin
+SET MASMINCLUDE=C:\MASM32\include
+SET MASMLIB=C:\MASM32\lib\
+
+%MASMBIN%\rc.exe /x %PROJECTNAME%.rc
+%MASMBIN%\Ml.exe /I %MASMINCLUDE% /c /coff %PROJECTNAME%.asm
+%MASMBIN%\link.exe /LIBPATH:%MASMLIB% /SUBSYSTEM:WINDOWS /FILEALIGN:512 %PROJECTNAME%.obj %PROJECTNAME%.res
+
+del *.obj
+del *.res
+
+echo.
+pause
